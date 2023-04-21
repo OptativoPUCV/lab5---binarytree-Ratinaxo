@@ -47,32 +47,39 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) {
 
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) {
-  if (tree == NULL || tree->root == NULL)return;
-  Pair *pairAux = searchTreeMap(tree, key);
-  if (pairAux != NULL){
-    pairAux->value = value;
-  }
-  TreeNode *nodoNuevo = createTreeNode(key, value);
-  if (nodoNuevo == NULL)return;
-  TreeNode * padre = NULL;
-  TreeNode *current = tree->root;
-  while (current != NULL){
-    padre = current;
-    if (tree->lower_than(key, current->pair->key)){
-      current = current->left;
-    }else{
-      current = current->right;
+  
+      if (tree == NULL) return;
+
+    Pair * pair = searchTreeMap(tree, key);
+    if (pair != NULL) {
+        pair->value = value;
+        return;
     }
-    nodoNuevo->parent = padre;
-    if (padre == NULL){
-      tree->root = nodoNuevo;
-    }else if(tree->lower_than(key, padre->pair->key)){
-      padre->left = nodoNuevo;
-    }else{
-      padre->right = nodoNuevo;
+
+    TreeNode * new_node = createTreeNode(key, value);
+    if (new_node == NULL) return;
+
+    TreeNode * parent = NULL;
+    TreeNode * current = tree->root;
+    while (current != NULL) {
+        parent = current;
+        if (tree->lower_than(key, current->pair->key)) {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
     }
-  }
-  tree->current = nodoNuevo;
+
+    new_node->parent = parent;
+    if (parent == NULL) {
+        tree->root = new_node;
+    } else if (tree->lower_than(key, parent->pair->key)) {
+        parent->left = new_node;
+    } else {
+        parent->right = new_node;
+    }
+
+    tree->current = new_node;
 }
 
 TreeNode * minimum(TreeNode * x){
@@ -99,13 +106,17 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 Pair * searchTreeMap(TreeMap * tree, void* key) {
   if (tree == NULL || tree->root == NULL)return NULL;
+  
   TreeNode *currentAux = tree->root;
+  
   while (currentAux != NULL){
     if (is_equal(tree, currentAux->pair->key, key)){
       tree->current = currentAux;
       return currentAux->pair;
+      
     }else if (tree->lower_than(key, currentAux->pair->key)){
       currentAux = currentAux->left;
+      
     }else{
       currentAux = currentAux->right;
     }
