@@ -49,3 +49,9 @@ treemap.c:51:13: error: unused variable ‘currentAux’ [-Werror=unused-variabl
 cc1: all warnings being treated as errors
 Compilation failed
 87fa1f7
+Fri 21 Apr 2023 10:36:48 PM UTC: 
+ treemap.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ tests:  11|6
+total_score: 15/70
+31531f7
