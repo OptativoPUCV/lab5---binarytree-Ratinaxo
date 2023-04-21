@@ -38,3 +38,14 @@ Thu 20 Apr 2023 10:38:28 PM UTC:
  tests:  11|6
 total_score: 15/70
 ca7e0a5
+Fri 21 Apr 2023 10:32:24 PM UTC: 
+ treemap.c | 2 ++
+ 1 file changed, 2 insertions(+)
+In file included from test.c:4:
+treemap.c: In function ‘insertTreeMap’:
+treemap.c:51:13: error: unused variable ‘currentAux’ [-Werror=unused-variable]
+   51 |   TreeNode *currentAux = tree->root;
+      |             ^~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+87fa1f7
