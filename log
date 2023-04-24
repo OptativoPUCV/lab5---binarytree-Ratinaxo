@@ -171,3 +171,9 @@ treemap.c:182:28: error: stray ‘\302’ in program
       |                            ^
 Compilation failed
 f573b78
+Mon 24 Apr 2023 03:41:45 AM UTC: 
+ treemap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  29|0
+total_score: 70/70
+c769b19
